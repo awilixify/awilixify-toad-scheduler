@@ -1,0 +1,68 @@
+{
+	"name": "@awilixify/toad-scheduler",
+	"version": "0.1.0",
+	"description": "Cron and interval scheduling for Awilixify with decorators, scoped task registration.",
+	"type": "module",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/awilixify/awilixify-toad-scheduler.git"
+	},
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"build:watch": "tsc -p tsconfig.build.json --watch",
+		"build:release": "npm run lint && npm run check-types && npm test && npm run build",
+		"check-types": "tsc --noEmit",
+		"lint": "biome check index.ts lib test",
+		"lint:fix": "biome check --write index.ts lib test",
+		"test": "npm run test:runtime && npm run test:types",
+		"test:runtime": "vitest run",
+		"test:types": "tstyche",
+		"test:watch": "vitest",
+		"prepack": "npm run build:release"
+	},
+	"peerDependencies": {
+		"awilixify": "^3.4.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.6.4",
+		"@types/node": "^22.15.21",
+		"awilix": "^13.0.0",
+		"awilixify": "^3.4.0",
+		"tstyche": "^7.2.5",
+		"typescript": "^5.9.3",
+		"vitest": "^5.0.5",
+		"@swc/core": "^1.15.33",
+		"unplugin-swc": "^1.5.9"
+	},
+	"keywords": [
+		"awilixify",
+		"toad-scheduler",
+		"scheduler",
+		"dependency-injection",
+		"typescript"
+	],
+	"dependencies": {
+		"toad-scheduler": "^3.1.0"
+	}
+}
